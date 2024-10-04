@@ -27,7 +27,7 @@ if [ ! -r "/mnt/SDCARD/.tmp_update/scripts/helperFunctions.sh" ]; then
     exit 1
 fi
 
-. /mnt/SDCARD/.tmp_update/scripts/helperFunctions.sh
+. /mnt/SDCARD/spruce/scripts/helperFunctions.sh
 log_message "helperFunctions.sh sourced successfully"
 
 log_message "Starting Advanced Settings script"
@@ -93,11 +93,11 @@ display_current_setting() {
         log_message "Displaying setting: $text: $value"
         local category_image="$BASE_DIR/imgs/${category}.png"
         [ -f "$category_image" ] || category_image="$BASE_IMAGE"
-        display_text -i "$category_image" -t "$text:
+        display -i "$category_image" -t "$text:
 $value" -p middle -s 40
     else
         log_message "Error: Text not found for key $key in category $category"
-        display_text -i "$BASE_IMAGE" -t "Error: Setting not found" -p middle -s 44
+        display -i "$BASE_IMAGE" -t "Error: Setting not found" -p middle -s 44
     fi
 }
 
@@ -173,7 +173,7 @@ main_settings_menu() {
                 ;;
             "A")
                 save_advanced_settings
-                display_text -t "Settings saved" -p bottom -s 26 -d 2
+                display -t "Settings saved" -p bottom -s 26 -d 2
                 log_message "Settings saved, changed keys: $CHANGED_KEYS"
                 
                 # Call the function to handle changed settings

@@ -4,7 +4,7 @@ BASE_DIR="/mnt/SDCARD/App/AdvancedSettings"
 OPTIONS_FILE="$BASE_DIR/options.json"
 BASE_IMAGE="$BASE_DIR/imgs/default.png"
 
-. /mnt/SDCARD/miyoo/scripts/helperFunctions.sh
+. /mnt/SDCARD/spruce/scripts/helperFunctions.sh
 
 log_message "Starting Advanced Settings script"
 
@@ -14,7 +14,7 @@ display_option() {
     local current_value="$2"
     local category="$3"
     
-    display_text -t "$category - $display_name: $current_value"
+    display -t "$category - $display_name: $current_value"
 }
 
 # Function to get the index of the current value in the options array
@@ -94,7 +94,7 @@ main_settings_menu() {
                     local key=$(echo "$options" | jq -r ".[$i].Key")
                     echo "$current_values" | cut -d',' -f$((i + 1)) > "$BASE_DIR/$key.txt"
                 done
-                display_text -t "Settings saved" -d 2
+                display -t "Settings saved" -d 2
                 return
                 ;;
             "B")
