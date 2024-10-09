@@ -42,6 +42,7 @@ morse_code_sos() {
 
 while true; do
     CAPACITY=$(cat /sys/class/power_supply/battery/capacity)
+    /mnt/SDCARD/.tmp_update/scripts/powerdisplay.sh
 
     if [ "$CAPACITY" -le $PERCENT ]; then 
         vibrate_count=0
