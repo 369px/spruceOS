@@ -30,12 +30,11 @@ THEME_PATH_SKIN="${THEME_PATH}skin/"
 
 for icon in ${BATTERY_ICONS}; do 
     TMP_OG_FILE="${THEME_PATH_SKIN}${icon}.png"
-    TMP_BACKUP_FILE="${THEME_PATH_SKIN}${icon}-backup.png"
-
     if [ -f "$TMP_OG_FILE" ]; then
+        TMP_BACKUP_FILE="${THEME_PATH_SKIN}${icon}-backup.png"
         if [ ! -f "$TMP_BACKUP_FILE" ]; then
             cp $TMP_OG_FILE $TMP_BACKUP_FILE
         fi
-        /mnt/SDCARD/.tmp_update/bin/battery_percent.elf $TMP_BACKUP_FILE $CAPACITY $TMP_OG_FILE
     fi
 done
+/mnt/SDCARD/.tmp_update/bin/battery_percent.elf $THEME_PATH_SKIN $CAPACITY
