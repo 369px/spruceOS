@@ -28,14 +28,12 @@ for console in os.listdir(roms_dir):
 
             # Accedi alla lista di giochi usando la chiave "games"
             games = data.get("games", [])
+
+            content = setup_content
             
             if isinstance(games, list):
                 # Modifica il titolo in base al nome della cartella
-                content = f"# Check out these {console} games!\n\n"  # Aggiornato qui
-
-                # Aggiungi il contenuto di setup_content se non è già presente
-                if setup_content.strip() not in content:
-                    content += setup_content
+                content += f"# Check out these {console} games!\n\n"  # Aggiornato qui
 
                 for game in games:
                     if isinstance(game, dict):  # Verifica che game sia un dizionario
