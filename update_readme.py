@@ -21,11 +21,11 @@ for console in os.listdir(roms_dir):
             games = data.get("games", [])
             
             if isinstance(games, list):
-                content = f"# Check out these games for {console}!\n\n"
-                
+                # Modifica il titolo in base al nome della cartella
+                content = f"# Check out these {console} games!\n\n"  # Aggiornato qui
+
                 for game in games:
                     if isinstance(game, dict):  # Verifica che game sia un dizionario
-                        # Controlla la presenza dei campi necessari
                         cover = game.get("cover")
                         name = game.get("name")
                         recommended_by = game.get("recommended_by", [])
