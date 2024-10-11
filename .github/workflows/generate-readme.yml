@@ -24,7 +24,7 @@ jobs:
         python -m pip install --upgrade pip
 
     - name: Run Python script to generate README
-      run: python /Roms/.update_readme.py
+      run: python Roms.update_readme.py
 
     - name: Commit changes
       run: |
