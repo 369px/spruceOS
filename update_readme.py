@@ -1,6 +1,10 @@
 import json
 import os
 
+# Directory base delle ROMS
+roms_dir = 'Roms'
+files_modified = 0
+
 # Contenuto da aggiungere
 setup_content = """
 ## How to set up covers for your games:
@@ -10,46 +14,68 @@ setup_content = """
 4. Put the image in the `imgs` subfolder and you're done!
 """
 
-# Iterate over each console directory
-for console in os.listdir('.'):
-    json_path = os.path.join(console, 'games.json')
-    readme_path = os.path.join(console, 'README.md')
+# Itera su ogni console nella directory Roms
+for console in os.listdir(roms_dir):
+    console_path = os.path.join(roms_dir, console)
     
-    # Process only if games.json exists in the directory
-    if os.path.exists(json_path):
-        with open(json_path) as f:
-            games = json.load(f)
+    if os.path.isdir(console_path):
+        json_path = os.path.join(console_path, 'games.json')
+        readme_path = os.path.join(console_path, 'README.md')
         
-        # Begin building the README content
-        content = f"# Check out these {console} games!\n\n"
-        
-        for game in games:
-            content += f'<img width="123" src="{game["cover"]}">\n'
-            content += '<div style="background-color:#eeeeee">\n'
-            content += f'<details>\n  <summary>{game["name"]}</summary>\n  <br>\n'
-            content += '  <i>Recommended by:</i>\n  <br>\n'
+        if os.path.exists(json_path):
+            with open(json_path) as f:
+                data = json.load(f)
+
+            # Accedi alla lista di giochi usando la chiave "games"
+            games = data.get("games", [])
             
-            # Add each collaborator's GitHub link and avatar
-            for user in game['recommended_by']:
-                content += f'  <a href="https://github.com/{user}/">\n'
-                content += f'  <img src="https://avatars.githubusercontent.com/{user}?s=24" align="left"/></a> {user}\n  <br>\n'
-            
-            content += '  <br></details></div>\n\n'
-        
-        # Read existing README content if it exists
-        if os.path.exists(readme_path):
-            with open(readme_path, 'r') as f:
-                existing_content = f.read()
-                
-            # Check if setup_content is already present
-            if "How to set up covers for your games" not in existing_content:
-                existing_content += setup_content  # Append setup instructions
+            if isinstance(games, list):
+                # Modifica il titolo in base al nome della cartella
+                content = f"# Check out these {console} games!\n\n"  # Aggiornato qui
 
-            # Combine new content with existing content
-            content = existing_content + content
+                for game in games:
+                    if isinstance(game, dict):  # Verifica che game sia un dizionario
+                        cover = game.get("cover")
+                        name = game.get("name")
+                        recommended_by = game.get("recommended_by", [])
 
-        # Write the README.md for the specific console
-        with open(readme_path, 'w') as f:
-            f.write(content)
+                        if cover and name:
+                            content += f'<img width="123" src="{cover}">\n'
+                            content += '<div style="background-color:#eeeeee">\n'
+                            content += f'<details>\n  <summary>{name}</summary>\n  <br>\n'
+                            content += '  <i>Recommended by:</i>\n  <br>\n'
+                            
+                            for user in recommended_by:
+                                content += f'  <a href="https://github.com/{user}/">\n'
+                                content += f'  <img src="https://avatars.githubusercontent.com/{user}?s=24" align="left"/></a> {user}\n  <br>\n'
+                            
+                            content += '  <br></details></div>\n\n'
+                    else:
+                        print(f"Elemento non valido in games.json per {console}: {game}")
 
-print("README.md files generated for each console.")
+                # Aggiungi il contenuto di setup_content se non è già presente
+                if setup_content.strip() not in content:
+                    content += setup_content
+
+                if content:
+                    if os.path.exists(readme_path):
+                        with open(readme_path, 'r') as f:
+                            existing_content = f.read()
+                        
+                        if content != existing_content:
+                            with open(readme_path, 'w') as f:
+                                f.write(content)
+                            print(f"Updated README.md for {console}.")
+                            files_modified += 1
+                    else:
+                        with open(readme_path, 'w') as f:
+                            f.write(content)
+                        print(f"Created README.md for {console}.")
+                        files_modified += 1
+            else:
+                print(f"Il file {json_path} non contiene una lista di giochi.")
+
+if files_modified == 0:
+    raise ValueError("No README.md files were updated.")
+else:
+    print(f"{files_modified} README.md files were updated.")
