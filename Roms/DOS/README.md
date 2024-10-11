@@ -29,14 +29,4 @@
   <a href="https://github.com/369px/">
   <img src="https://avatars.githubusercontent.com/369px?s=24" align="left"/></a> 369px
   <br>
-  <br></details></div><br><img width="123" src="https://playclassic.games/wp-content/uploads/2019/04/Grand-Theft-Auto.jpg">
-<div style="background-color:#eeeeee">
-<details>
-  <summary>Grand Theft Auto 6</summary>
-  <br>
-  <i>Recommended by:</i>
-  <br>
-  <a href="https://github.com/369px/">
-  <img src="https://avatars.githubusercontent.com/369px?s=24" align="left"/></a> 369px
-  <br>
   <br></details></div><br>
