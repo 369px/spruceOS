@@ -27,10 +27,10 @@
   <br>
   <br></details></div>
 
-<img width="123" src="https://cdn.wikimg.net/en/strategywiki/images/thumb/3/36/Commando_CPC_box.jpg/300px-Commando_CPC_box.jpg">
+<img width="123" src="https://playclassic.games/wp-content/uploads/2019/04/Grand-Theft-Auto.jpg">
 <div style="background-color:#eeeeee">
 <details>
-  <summary>Ciao</summary>
+  <summary>GTA</summary>
   <br>
   <i>Recommended by:</i>
   <br>
@@ -39,3 +39,9 @@
   <br>
   <br></details></div>
 
+
+## How to set up covers for your games:
+1. Download the `.PNG` cover you want to use for your game
+2. Make sure the `.PNG` file you just downloaded is `498x680px`
+3. Change its name to the exact name of its game (eg. `my_game.png` and `my_game.gb`)
+4. Put the image in the `imgs` subfolder and you're done!
