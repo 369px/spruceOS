@@ -45,4 +45,4 @@ print("README.md files generated for each console.")
 
 # Termina con un errore se nessun file è stato modificato (opzionale)
 if files_modified == 0:
-    raise ValueError("No README.md files were updated.")
+    print("No README.md files were updated.")
