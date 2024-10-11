@@ -1,4 +1,4 @@
-# Check out these games for DOS!
+# Check out these DOS games!
 
 <img width="123" src="https://www.neverdiemedia.com/cdn/shop/files/2012125151646567REWL6778RE.jpg?v=1713623724">
 <div style="background-color:#eeeeee">
@@ -30,7 +30,7 @@
 <img width="123" src="https://cdn.wikimg.net/en/strategywiki/images/thumb/3/36/Commando_CPC_box.jpg/300px-Commando_CPC_box.jpg">
 <div style="background-color:#eeeeee">
 <details>
-  <summary>sbureda</summary>
+  <summary>Ciao</summary>
   <br>
   <i>Recommended by:</i>
   <br>
