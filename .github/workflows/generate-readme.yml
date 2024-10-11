@@ -24,7 +24,9 @@ jobs:
         python -m pip install --upgrade pip
 
     - name: Run Python script to generate README
-      run: python update_readme.py
+      run: |
+        python update_readme.py || echo "No README.md files updated; continuing without error."
+
       
     - name: Commit changes
       run: |
