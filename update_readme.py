@@ -7,8 +7,10 @@ files_modified = 0
 for console in os.listdir('.'):
     json_path = os.path.join(console, 'games.json')
     readme_path = os.path.join(console, 'README.md')
-    
+
     if os.path.exists(json_path):
+        print(f"Processing {json_path}")  # Stampa di debug
+
         with open(json_path) as f:
             games = json.load(f)
         
