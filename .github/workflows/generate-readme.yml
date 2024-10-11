@@ -32,7 +32,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add .
         git status  # Controllo aggiuntivo per visualizzare i file modificati
-        git commit -m "Auto-update README files"
+        git commit -m "Auto-update README files" --allow-empty
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
