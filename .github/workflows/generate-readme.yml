@@ -25,13 +25,15 @@ jobs:
 
     - name: Run Python script to generate README
       run: python update_readme.py
-
+      
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
+        git status  # Controllo aggiuntivo per visualizzare i file modificati
         git commit -m "Auto-update README files"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
