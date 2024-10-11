@@ -33,6 +33,10 @@ for console in os.listdir(roms_dir):
                 # Modifica il titolo in base al nome della cartella
                 content = f"# Check out these {console} games!\n\n"  # Aggiornato qui
 
+                # Aggiungi il contenuto di setup_content se non è già presente
+                if setup_content.strip() not in content:
+                    content += setup_content
+
                 for game in games:
                     if isinstance(game, dict):  # Verifica che game sia un dizionario
                         cover = game.get("cover")
@@ -49,13 +53,9 @@ for console in os.listdir(roms_dir):
                                 content += f'  <a href="https://github.com/{user}/">\n'
                                 content += f'  <img src="https://avatars.githubusercontent.com/{user}?s=24" align="left"/></a> {user}\n  <br>\n'
                             
-                            content += '  <br></details></div>\n\n'
+                            content += '  <br></details></div><br>'
                     else:
                         print(f"Elemento non valido in games.json per {console}: {game}")
-
-                # Aggiungi il contenuto di setup_content se non è già presente
-                if setup_content.strip() not in content:
-                    content += setup_content
 
                 if content:
                     if os.path.exists(readme_path):
