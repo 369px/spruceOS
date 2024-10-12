@@ -40,6 +40,9 @@ for console in os.listdir(roms_dir):
 
                 row_elements = []  # List to keep track of current row elements
 
+                # Prepare a list for sorting
+                games_info = []
+
                 for game in games:
                     if isinstance(game, dict):  # Check if game is a dictionary
                         cover = game.get("cover")
@@ -56,17 +59,24 @@ for console in os.listdir(roms_dir):
                             
                             cell_content += '</details></div>'
                             
-                            row_elements.append(cell_content)  # Add the cell to the current row
-
-                            # If we have 4 elements, complete the row
-                            if len(row_elements) == 4:
-                                content += '| ' + ' | '.join(row_elements) + ' |\n'
-                                row_elements = []  # Reset for the next row
+                            # Append game information to the list for sorting
+                            games_info.append((len(recommended_by), name, cell_content))  # (number of recommendations, name, cell content)
                         else:
                             print(f"Invalid cover or name for game in {console}: {game}")
 
                     else:
                         print(f"Invalid element in games.json for {console}: {game}")
+
+                # Sort games: first by number of recommendations (descending), then by name (ascending)
+                games_info.sort(key=lambda x: (-x[0], x[1]))
+
+                for _, _, cell_content in games_info:
+                    row_elements.append(cell_content)  # Add the cell to the current row
+
+                    # If we have 4 elements, complete the row
+                    if len(row_elements) == 4:
+                        content += '| ' + ' | '.join(row_elements) + ' |\n'
+                        row_elements = []  # Reset for the next row
 
                 # If there are remaining elements in the row, close the last row
                 if row_elements:
