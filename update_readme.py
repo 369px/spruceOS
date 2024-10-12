@@ -38,6 +38,8 @@ for console in os.listdir(roms_dir):
                 content += "|        |        |        |        |\n"
                 content += "|:----   | :----  | :----  | :----  |\n"
 
+                row_elements = []  # List to keep track of current row elements
+
                 for game in games:
                     if isinstance(game, dict):  # Check if game is a dictionary
                         cover = game.get("cover")
@@ -46,20 +48,31 @@ for console in os.listdir(roms_dir):
 
                         if cover and name:
                             # Create a table cell with the cover image and game details
-                            content += f'|<img height="139" src="{cover}">'
-                            content += f'<div style="background-color:#eeeeee"><details><summary>{name}</summary><br><i>Recommended by:</i><br>'
+                            cell_content = f'<img height="139" src="{cover}">'
+                            cell_content += f'<div style="background-color:#eeeeee"><details><summary>{name}</summary><br><i>Recommended by:</i><br>'
                             
                             for user in recommended_by:
-                                content += f'<a href="https://github.com/{user}/"><img src="https://avatars.githubusercontent.com/{user}?s=24" align="left"/></a> {user}<br>'
+                                cell_content += f'<a href="https://github.com/{user}/"><img src="https://avatars.githubusercontent.com/{user}?s=24" align="left"/></a> {user}<br>'
                             
-                            content += '</details></div>'
+                            cell_content += '</details></div>'
+                            
+                            row_elements.append(cell_content)  # Add the cell to the current row
+
+                            # If we have 4 elements, complete the row
+                            if len(row_elements) == 4:
+                                content += '| ' + ' | '.join(row_elements) + ' |\n'
+                                row_elements = []  # Reset for the next row
                         else:
                             print(f"Invalid cover or name for game in {console}: {game}")
 
                     else:
                         print(f"Invalid element in games.json for {console}: {game}")
 
-                # Close the Markdown table row
+                # If there are remaining elements in the row, close the last row
+                if row_elements:
+                    content += '| ' + ' | '.join(row_elements) + ' |\n'
+
+                # Close the Markdown table
                 content += '|        |        |        |        |\n'
 
                 if content:
