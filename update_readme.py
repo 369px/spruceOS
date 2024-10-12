@@ -46,13 +46,13 @@ for console in os.listdir(roms_dir):
 
                         if cover and name:
                             # Create a table cell with the cover image and game details
-                            content += f'|<img height="139" src="{cover}">\n'
-                            content += f'<div style="background-color:#eeeeee"><details><summary>{name}</summary><br><i>Recommended by:</i><br>\n'
+                            content += f'|<img height="139" src="{cover}">'
+                            content += f'<div style="background-color:#eeeeee"><details><summary>{name}</summary><br><i>Recommended by:</i><br>'
                             
                             for user in recommended_by:
-                                content += f'<a href="https://github.com/{user}/"><img src="https://avatars.githubusercontent.com/{user}?s=24" align="left"/></a> {user}<br>\n'
+                                content += f'<a href="https://github.com/{user}/"><img src="https://avatars.githubusercontent.com/{user}?s=24" align="left"/></a> {user}<br>'
                             
-                            content += '</details></div>|\n'
+                            content += '</details></div>'
                         else:
                             print(f"Invalid cover or name for game in {console}: {game}")
 
