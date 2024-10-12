@@ -6,13 +6,7 @@ roms_dir = 'Roms'
 files_modified = 0
 
 # Content to add at the beginning
-setup_content = """
-## How to set up covers for your games:
-1. Download the `.PNG` cover you want to use for your game
-2. Make sure the `.PNG` file you just downloaded is `498x680px`
-3. Change its name to the exact name of its game (eg. `my_game.png` and `my_game.gb`)
-4. Put the image in the `imgs` subfolder and you're done!
-"""
+# redacted, nothing for now
 
 # Iterate over each console in the Roms directory
 for console in os.listdir(roms_dir):
@@ -29,10 +23,8 @@ for console in os.listdir(roms_dir):
             # Access the list of games using the "games" key
             games = data.get("games", [])
 
-            content = setup_content
-
             if isinstance(games, list):
-                content += f"# Check out these {console} games!\n\n"
+                content = f"# Check out these {console} games!\n\n"
 
                 # Start the Markdown table
                 content += "|        |        |        |        |\n"
