@@ -14,6 +14,11 @@
       "name": "Grand Theft Auto",
       "cover": "https://playclassic.games/wp-content/uploads/2019/04/Grand-Theft-Auto.jpg",
       "recommended_by": ["369px","sundownersport"]
+    },
+    {
+      "name": "DOOM",
+      "cover": "https://www.filfre.net/wp-content/uploads/2020/05/470018-doom-dos-front-cover.jpg",
+      "recommended_by": ["369px","sundownersport"]
     }
   ]
 }
