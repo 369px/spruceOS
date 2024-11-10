@@ -1,0 +1,14 @@
+/* Wiki BG */
+body {
+  background-color: #282828;
+  color: white; /* text color */
+}
+
+/* title colors */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+}
+
+a {
+  color: #1e90ff; /* Link colors */
+}
